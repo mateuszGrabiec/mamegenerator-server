@@ -4,9 +4,8 @@ const cors = require("cors");
 const base64Img = require("base64-img");
 const Image = require("./models/Image");
 const mongoose = require("mongoose");
-//mongodb://localhost:27017/myapp
 
-mongoose.connect('mongodb://admin:admin@localhost:27017/memegenerator',{ useNewUrlParser: true , useUnifiedTopology: true});
+mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true , useUnifiedTopology: true});
 
 const app = express();
 app.use(bodyParser.json({limit: "50mb"}));

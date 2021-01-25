@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: memegenerator-server-deploy
+  name: memegenerator-server-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memegenerator-server-deploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: memegenerator-server-deploy
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/labproj13/memegenerator-server:latest
+        name: memegenerator-server
+        ports:
+        - containerPort: 3000
+        resources: {}
+        envFrom:
+        - secretRef:
+            name: memegenerator-server-secret
+status: {}
